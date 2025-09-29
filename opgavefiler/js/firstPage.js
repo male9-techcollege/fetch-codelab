@@ -1,13 +1,117 @@
-/* Opgave 1*/
-// din kode her
-const myDataFileUrl = "../../opgavefiler/data/story.json";
+/* The path has to start in the folder with the JS file, not the folder where that file is imported! */
+const myDataFileUrl = "../opgavefiler/data/story.json";
+/* theStory is an article in file assets/pages/firstPage.html */
 const myStoryElement = document.getElementById("theStory");
+
+/* Opgave 1*/
+/* Opgave beskrivelse
+Hent den danske version af historien om kode katten Felix, og vis den i DOM-elementet med id "theStory". 
+Du skal indsætte et af billederne i opgavefiler/img. 
+*/
+
+// din kode her
+
+let myStorydata = null;
+
+fetch(myDataFileUrl)
+    .then((response) => {
+        /* MAYBE TO DO: add stuff in case the response is not OK (not a requirement in this assignment) */
+        return response.json();
+
+    })
+    .then((data) => {
+        myStorydata = data;
+        /* DK is a case in a switch statement */
+        setUpStory('DK');
+    })
+    .catch((error) => {
+        console.error(error);
+        /* MAYBE TO DO:  Fail gracefully by adding code here to tell the user about the error (not a requirement in this assignment). */
+    });
+
+function setUpStory(myLanguage) {
+    let myStory = null;
+
+    switch (myLanguage) {
+        case 'DK':
+            myStory = myStorydata.DK;
+            break;
+
+        case 'SE':
+            myStory = myStorydata.SE;
+            break;
+
+        case 'FI':
+            myStory = myStorydata.FI;
+            break;
+
+        case 'UK':
+            myStory = myStorydata.UK;
+            break;
+
+        default:
+            myStory = myStorydata.DK;
+            break;
+    }
+
+    createStory(myStory);
+}
+
+function createStory(myStory) {
+    myStoryElement.innerHTML = ''
+    createButtons();
+
+    let myHeadline = document.createElement('h4');
+    myHeadline.innerText = myStory.headline;
+    let myImage = document.createElement('img');
+    myImage.src = '../opgavefiler/img/felix.jpg';
+    let myParagraf = document.createElement('p');
+    myParagraf.innerText = myStory.text;
+
+
+    myStoryElement.appendChild(myHeadline);
+    myStoryElement.appendChild(myImage);
+    myStoryElement.appendChild(myParagraf);
+
+}
+
+function createButtons() {
+    let myDkbutton = document.createElement('button');
+    myDkbutton.innerText = 'Dansk';
+    myDkbutton.addEventListener('click', (e) => {
+        setUpStory("DK");
+    });
+
+    let mySebutton = document.createElement('button');
+    mySebutton.innerText = 'Svenska';
+    mySebutton.addEventListener('click', (e) => {
+        setUpStory("SE");
+    });
+
+    let myFibutton = document.createElement('button');
+    myFibutton.innerText = 'Finsk';
+    myFibutton.addEventListener('click', (e) => {
+        setUpStory("FI");
+    });
+
+    let myUkbutton = document.createElement('button');
+    myUkbutton.innerText = 'English';
+    myUkbutton.addEventListener('click', (e) => {
+        setUpStory("UK");
+    });
+
+    myStoryElement.appendChild(myDkbutton);
+    myStoryElement.appendChild(mySebutton);
+    myStoryElement.appendChild(myFibutton);
+    myStoryElement.appendChild(myUkbutton);
+}
 
 
 /* Opgave 2 - skriv videre på koden her: */
-const myDataFileUrl = "../../opgavefiler/data/story.json";
-const myStoryElement = document.getElementById("theStory");
-
+/* Reuse the 2 constants at the top of the script: 
+myDataFileUrl
+myStoryElement
+*/
 
 
 
