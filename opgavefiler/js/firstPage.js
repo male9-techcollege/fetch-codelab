@@ -1,5 +1,5 @@
 /* The path has to start in the folder with the JS file, not the folder where that file is imported! */
-const myDataFileUrl = "../opgavefiler/data/story.json";
+const myDataFileUrl = "../../opgavefiler/data/story.json";
 /* theStory is an article in file assets/pages/firstPage.html */
 const myStoryElement = document.getElementById("theStory");
 
@@ -64,7 +64,7 @@ function createStory(myStory) {
     let myHeadline = document.createElement('h4');
     myHeadline.innerText = myStory.headline;
     let myImage = document.createElement('img');
-    myImage.src = '../opgavefiler/img/felix.jpg';
+    myImage.src = '../../opgavefiler/img/felix.jpg';
     let myParagraf = document.createElement('p');
     myParagraf.innerText = myStory.text;
 
