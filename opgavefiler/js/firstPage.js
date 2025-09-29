@@ -1,5 +1,9 @@
-/* The path has to start in the folder with the JS file, not the folder where that file is imported! */
-const myDataFileUrl = "../../opgavefiler/data/story.json";
+/* To test this code, I have to be online (e.g. with LiveServer). Fetch() doesn't work with files stored on a PC. It is sending a HTTP request to a server. */
+
+/* The following relative path doesn't work on GitHub.
+TO DO: make it work on GitHub with an absolute path. Platforms like GitHub can require that. */
+// const myDataFileUrl = "../../opgavefiler/data/story.json";
+const myDataFileUrl = "https://male9-techcollege.github.io/fetch-codelab/opgavefiler/data/story.json";
 /* theStory is an article in file assets/pages/firstPage.html */
 const myStoryElement = document.getElementById("theStory");
 
@@ -55,16 +59,17 @@ function setUpStory(myLanguage) {
     }
 
     createStory(myStory);
-}
+};
 
 function createStory(myStory) {
-    myStoryElement.innerHTML = ''
+    myStoryElement.innerHTML = '';
     createButtons();
 
     let myHeadline = document.createElement('h4');
     myHeadline.innerText = myStory.headline;
     let myImage = document.createElement('img');
-    myImage.src = '../../opgavefiler/img/felix.jpg';
+    // myImage.src = '../../opgavefiler/img/felix.jpg';
+    myImage.src = 'https://male9-techcollege.github.io/fetch-codelab/opgavefiler/img/felix.jpg';
     let myParagraf = document.createElement('p');
     myParagraf.innerText = myStory.text;
 
@@ -72,9 +77,9 @@ function createStory(myStory) {
     myStoryElement.appendChild(myHeadline);
     myStoryElement.appendChild(myImage);
     myStoryElement.appendChild(myParagraf);
+};
 
-}
-
+/* These buttons allow the user to switch to diff. languages. */
 function createButtons() {
     let myDkbutton = document.createElement('button');
     myDkbutton.innerText = 'Dansk';
@@ -104,7 +109,7 @@ function createButtons() {
     myStoryElement.appendChild(mySebutton);
     myStoryElement.appendChild(myFibutton);
     myStoryElement.appendChild(myUkbutton);
-}
+};
 
 
 /* Opgave 2 - skriv videre på koden her: */
